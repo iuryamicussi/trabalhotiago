@@ -10,9 +10,16 @@
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!-- <link href="form-validation.css" rel="stylesheet"> -->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="js/busca.js"></script>
 </head>
 
 <body class="bg-light">
+    <div class="container">
+      <ol class="breadcrumb">
+          <li><a href="index.html">Início</a> / </li>
+          <li class="active" style="padding-left:5px"> Busca</li>
+        </ol>
+    </div>
 
   <div class="container">
     <div class="py-5 text-center">
@@ -20,10 +27,10 @@
       <h3>Bem Vindo ao BloodDonation!</h3>
       <p></p>
       <!-- <form action="busca.php" method="POST" class="navbar-form pull-right"> -->
-      <form class="navbar-form pull-right">
-        <input type="text" class="span2" name="nomePesquisado" id="nomePesquisado">
+      <div class="navbar-form">
+        <input type="text" class="span2" name="nomePesquisado" id="nomePesquisado" placeholder="Nome do Doador">
         <button id="submit" class="btn btn-inverse" type="button">Localizar meu Cadastro</button>
-      </form>
+      </div>
       <div>
         <table id="tabela" class="table table-hover">
           <thead class="thead-light">
@@ -43,30 +50,16 @@
 
   <script>
     $("#tabela")
-      .css("margin-top","30px")
+      .css("margin-top", "30px")
       .children().first()
-        .css("background","#f8d5dc")
-        .css("font-weight","bold");
-    $("#submit").click(function () {
-      var dados = $('#nomePesquisado').serialize();
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: 'busca.php',
-        async: true,
-        data: dados,
-        success: function (response) {
-          let dados = "";
-          response.forEach(element => {
-            console.log(element);
-            dados = dados + "<tr><td>" + element.primeiroNome + "</td>" +
-            "<td>" + element.nickname + "</td>" +
-            "<td>" + element.sangue + "</td></tr>";
-          });
-          $("#tabela").children().last().children().remove()
-          $("#tabela").children().last().append(dados);
-        }
-      });
+      .css("background", "#f8d5dc")
+      .css("font-weight", "bold");
+
+    $("#submit").on("click", buscarRegistros);
+    $("#nomePesquisado").on("keypress", function (e) {
+      if (e.charCode == 13) {
+        buscarRegistros();
+      }
     });
   </script>
 </body>
