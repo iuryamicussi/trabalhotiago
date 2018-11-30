@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Busca de Doadores Cadastrados</title>
+
+    <!-- Principal CSS do Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="form-validation.css" rel="stylesheet"> -->
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="sangue.png" alt="" width="350" height="210">
+            <h3>Bem Vindo ao BloodDonation!</h3>
+            <p></p>
+            <form action="busca.php" method="POST" class="navbar-form pull-right">
+                <input type="text" class="span2" name="nomePesquisado">
+                <button class="btn btn-inverse" type="submit">Localizar meu Cadastro</button>
+            </form>
+            <div class='row'>
+                <div class='col-10'>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Nickname</th>
+                                <th>Sangue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
